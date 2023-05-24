@@ -72,6 +72,8 @@ proc create_report { reportName command } {
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 4
 set_param xicom.use_bs_reader 1
+set_msg_config -id {Synth 8-256} -limit 10000
+set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7k325tffg900-2
 
@@ -81,7 +83,7 @@ set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir E:/__SCHOOLWORK__/IC_Test/Bridge_test/Bridge_test.cache/wt [current_project]
 set_property parent.project_path E:/__SCHOOLWORK__/IC_Test/Bridge_test/Bridge_test.xpr [current_project]
-set_property XPM_LIBRARIES XPM_CDC [current_project]
+set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part_repo_paths {C:/Users/admin/AppData/Roaming/Xilinx/Vivado/2020.2/xhub/board_store/xilinx_board_store} [current_project]
@@ -98,6 +100,10 @@ read_verilog -library xil_defaultlib {
   E:/__SCHOOLWORK__/IC_Test/Bridge_test/Bridge_test.gen/sources_1/bd/design_1/hdl/design_1_wrapper.v
   E:/__SCHOOLWORK__/IC_Test/Bridge_test/Bridge_test.srcs/sources_1/new/Uart8.v
 }
+read_ip -quiet e:/__SCHOOLWORK__/IC_Test/Bridge_test/Bridge_test.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci
+set_property used_in_implementation false [get_files -all e:/__SCHOOLWORK__/IC_Test/Bridge_test/Bridge_test.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xdc]
+set_property used_in_implementation false [get_files -all e:/__SCHOOLWORK__/IC_Test/Bridge_test/Bridge_test.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0_clocks.xdc]
+
 add_files E:/__SCHOOLWORK__/IC_Test/Bridge_test/Bridge_test.srcs/sources_1/bd/design_1/design_1.bd
 set_property used_in_implementation false [get_files -all e:/__SCHOOLWORK__/IC_Test/Bridge_test/Bridge_test.gen/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0_board.xdc]
 set_property used_in_implementation false [get_files -all e:/__SCHOOLWORK__/IC_Test/Bridge_test/Bridge_test.gen/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0.xdc]

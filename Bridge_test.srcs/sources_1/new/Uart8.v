@@ -14,25 +14,46 @@ module Uart8  #(
     input wire rx,
     input wire rxEn,
     output wire [7:0] out,
+    output wire RTS,
     output wire rxDone,
     output wire rxBusy,
     output wire rxErr,
+    output wire isFifoFull,
+    output wire isFifoEmpty,
 
     // tx interface
     output wire tx,
     input wire txEn,
     input wire CTS,
-    input wire [7:0] in,
+    //input wire [7:0] in,
     output wire txDone,
-    output wire txBusy
+    output wire txBusy,
+    output wire txInLow
 );
 wire rxClk;
 wire txClk;
 wire txStart;
+wire rxReady;
 
 wire inner_clk;
 
+wire fifo_full;
+wire fifo_empty;
+
+wire fifo_rd_en;
+wire fifo_wr_en;
+wire [7:0] fifo_wr_in;
+wire [7:0] fifo_rd_out;
+
+assign fifo_wr_in = out;
+
+assign isFifoFull = fifo_full;
+assign isFifoEmpty = fifo_empty;
+
+assign fifo_wr_en = rxDone;
+
 assign txStart = ~CTS;
+assign RTS = ~rxReady;
 
 design_1_wrapper clkgen_inst (
     .clk_in1_n(clk_n),
@@ -52,20 +73,36 @@ Uart8Receiver rxInst (
     .clk(rxClk),
     .en(rxEn),
     .in(rx),
+    .fifo_is_full(fifo_full),
     .out(out),
     .done(rxDone),
     .busy(rxBusy),
+    .rxReady(rxReady),
     .err(rxErr)
 );
 
 Uart8Transmitter txInst (
     .clk(txClk),
     .en(txEn),
+    .is_fifo_empty(fifo_empty),
     .start(txStart),
-    //.in(in),
+    .in(fifo_rd_out),
+    .need_rd(fifo_rd_en),
     .out(tx),
     .done(txDone),
-    .busy(txBusy)
+    .busy(txBusy),
+    .in_data_low(txInLow)
+);
+
+fifo_generator_0 rx2txFifo (
+  .wr_clk(rxClk),  // input wire wr_clk
+  .rd_clk(txClk),  // input wire rd_clk
+  .din(fifo_wr_in),        // input wire [7 : 0] din
+  .wr_en(fifo_wr_en),    // input wire wr_en
+  .rd_en(fifo_rd_en),    // input wire rd_en
+  .dout(fifo_rd_out),      // output wire [7 : 0] dout
+  .full(fifo_full),      // output wire full
+  .empty(fifo_empty)    // output wire empty
 );
 
 endmodule

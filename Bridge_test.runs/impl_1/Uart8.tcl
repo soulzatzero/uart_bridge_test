@@ -115,6 +115,8 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
+set_msg_config -id {Synth 8-256} -limit 10000
+set_msg_config -id {Synth 8-638} -limit 10000
 
 OPTRACE "impl_1" START { ROLLUP_1 }
 OPTRACE "Phase: Init Design" START { ROLLUP_AUTO }
@@ -136,12 +138,13 @@ OPTRACE "set parameters" START { }
   set_property parent.project_path E:/__SCHOOLWORK__/IC_Test/Bridge_test/Bridge_test.xpr [current_project]
   set_property ip_output_repo E:/__SCHOOLWORK__/IC_Test/Bridge_test/Bridge_test.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
-  set_property XPM_LIBRARIES XPM_CDC [current_project]
+  set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
   add_files -quiet E:/__SCHOOLWORK__/IC_Test/Bridge_test/Bridge_test.runs/synth_1/Uart8.dcp
   set_msg_config -source 4 -id {BD 41-1661} -limit 0
   set_param project.isImplRun true
+  read_ip -quiet e:/__SCHOOLWORK__/IC_Test/Bridge_test/Bridge_test.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci
   add_files E:/__SCHOOLWORK__/IC_Test/Bridge_test/Bridge_test.srcs/sources_1/bd/design_1/design_1.bd
   set_param project.isImplRun false
 OPTRACE "read constraints: implementation" START { }
@@ -313,7 +316,7 @@ set rc [catch {
   create_msg_db write_bitstream.pb
 OPTRACE "read constraints: write_bitstream" START { }
 OPTRACE "read constraints: write_bitstream" END { }
-  set_property XPM_LIBRARIES XPM_CDC [current_project]
+  set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
   catch { write_mem_info -force -no_partial_mmi Uart8.mmi }
 OPTRACE "write_bitstream setup" END { }
 OPTRACE "write_bitstream" START { }

@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Mon May 22 23:21:03 2023
-# Process ID: 24296
+# Start of session at: Wed May 24 14:53:48 2023
+# Process ID: 48940
 # Current directory: E:/__SCHOOLWORK__/IC_Test/Bridge_test/Bridge_test.runs/impl_1
 # Command line: vivado.exe -log Uart8.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source Uart8.tcl -notrace
 # Log file: E:/__SCHOOLWORK__/IC_Test/Bridge_test/Bridge_test.runs/impl_1/Uart8.vdi

@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date             : Mon May 22 23:21:46 2023
+| Date             : Wed May 24 14:54:29 2023
 | Host             : DESKTOP-91CQCSQ running 64-bit major release  (build 9200)
 | Command          : report_power -file Uart8_power_routed.rpt -pb Uart8_power_summary_routed.pb -rpx Uart8_power_routed.rpx
 | Design           : Uart8
@@ -30,11 +30,11 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.276        |
+| Total On-Chip Power (W)  | 0.280        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.116        |
-| Device Static (W)        | 0.160        |
+| Dynamic (W)              | 0.118        |
+| Device Static (W)        | 0.162        |
 | Effective TJA (C/W)      | 1.8          |
 | Max Ambient (C)          | 84.5         |
 | Junction Temperature (C) | 25.5         |
@@ -53,16 +53,18 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.003 |        7 |       --- |             --- |
-| Slice Logic    |    <0.001 |      172 |       --- |             --- |
-|   LUT as Logic |    <0.001 |       65 |    203800 |            0.03 |
-|   Register     |    <0.001 |       71 |    407600 |            0.02 |
-|   CARRY4       |    <0.001 |        3 |     50950 |           <0.01 |
-|   Others       |     0.000 |        9 |       --- |             --- |
-| Signals        |    <0.001 |      118 |       --- |             --- |
+| Slice Logic    |    <0.001 |      464 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      141 |    203800 |            0.07 |
+|   Register     |    <0.001 |      226 |    407600 |            0.06 |
+|   BUFG         |    <0.001 |        2 |        32 |            6.25 |
+|   CARRY4       |    <0.001 |       11 |     50950 |            0.02 |
+|   Others       |     0.000 |       37 |       --- |             --- |
+| Signals        |    <0.001 |      312 |       --- |             --- |
+| Block RAM      |    <0.001 |      0.5 |       445 |            0.11 |
 | MMCM           |     0.107 |        1 |        10 |           10.00 |
-| I/O            |     0.005 |       20 |       500 |            4.00 |
-| Static Power   |     0.160 |          |           |                 |
-| Total          |     0.276 |          |           |                 |
+| I/O            |     0.007 |       24 |       500 |            4.80 |
+| Static Power   |     0.162 |          |           |                 |
+| Total          |     0.280 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -74,9 +76,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Vccint    |       1.000 |     0.075 |       0.006 |      0.069 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.089 |       0.061 |      0.028 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vcco18    |       1.800 |     0.001 |       0.000 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -144,7 +146,7 @@ Table of Contents
 +-----------------+-----------+
 | Name            | Power (W) |
 +-----------------+-----------+
-| Uart8           |     0.116 |
+| Uart8           |     0.118 |
 |   clkgen_inst   |     0.113 |
 |     design_1_i  |     0.113 |
 |       clk_wiz_0 |     0.113 |

@@ -12,9 +12,11 @@ module Uart8Receiver (
     input  wire       clk,  // baud rate
     input  wire       en,
     input  wire       in,   // rx
+    input wire         fifo_is_full,
     output reg  [7:0] out,  // received data
     output reg        done, // end on transaction
     output reg        busy, // transaction is in process
+    output reg        rxReady, //rx is ready to take place
     output reg        err   // error while receiving data
 );
     // states of state machine
@@ -34,12 +36,17 @@ module Uart8Receiver (
         err <= 1'b0;
         done <= 1'b0;
         busy <= 1'b0;
+        //rxReady <= 1'b0;
+    end
+    
+    always @(*) begin
+        rxReady = ~fifo_is_full & en;
     end
 
     always @(posedge clk) begin
         inputSw = { inputSw[0], in };
 
-        if (!en) begin
+        if (!rxReady) begin
             state = RESET;
         end
 
@@ -52,7 +59,7 @@ module Uart8Receiver (
                 bitIdx <= 3'b0;
                 clockCount <= 4'b0;
                 receivedData <= 8'b0;
-                if (en) begin
+                if (rxReady) begin
                     state <= IDLE;
                 end
             end
@@ -82,14 +89,18 @@ module Uart8Receiver (
                 if (&clockCount) begin // save one bit of received data
                     clockCount <= 4'b0;
                     // TODO: check the most popular value
-                    receivedData[bitIdx] <= inputSw[0];
+                    
                     if (&bitIdx) begin
                         bitIdx <= 3'b0;
                         state <= STOP_BIT;
                     end else begin
                         bitIdx <= bitIdx + 3'b1;
                     end
-                end else begin
+                end else if (clockCount == 4'b0111) begin
+                    receivedData[bitIdx] <= inputSw[0];
+                    clockCount <= clockCount + 4'b1;
+                end
+                else begin
                     clockCount <= clockCount + 4'b1;
                 end
             end
