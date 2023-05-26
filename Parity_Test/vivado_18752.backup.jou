@@ -1,0 +1,185 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed May 24 21:16:37 2023
+# Process ID: 18752
+# Current directory: C:/Users/admin/Desktop/Parity_Test
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14376 C:\Users\admin\Desktop\Parity_Test\Parity_Test.xpr
+# Log file: C:/Users/admin/Desktop/Parity_Test/vivado.log
+# Journal file: C:/Users/admin/Desktop/Parity_Test\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/admin/Desktop/Parity_Test/Parity_Test.xpr
+update_compile_order -fileset sources_1
+set_property -dict [list CONFIG.Performance_Options {Standard_FIFO} CONFIG.Full_Threshold_Assert_Value {1021} CONFIG.Full_Threshold_Negate_Value {1020} CONFIG.Empty_Threshold_Assert_Value {2} CONFIG.Empty_Threshold_Negate_Value {3}] [get_ips fifo_generator_0]
+generate_target all [get_files  C:/Users/admin/Desktop/Parity_Test/Parity_Test.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci]
+catch { config_ip_cache -export [get_ips -all fifo_generator_0] }
+export_ip_user_files -of_objects [get_files C:/Users/admin/Desktop/Parity_Test/Parity_Test.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci] -no_script -sync -force -quiet
+reset_run fifo_generator_0_synth_1
+launch_runs fifo_generator_0_synth_1 -jobs 8
+wait_on_run fifo_generator_0_synth_1
+export_simulation -of_objects [get_files C:/Users/admin/Desktop/Parity_Test/Parity_Test.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci] -directory C:/Users/admin/Desktop/Parity_Test/Parity_Test.ip_user_files/sim_scripts -ip_user_files_dir C:/Users/admin/Desktop/Parity_Test/Parity_Test.ip_user_files -ipstatic_source_dir C:/Users/admin/Desktop/Parity_Test/Parity_Test.ip_user_files/ipstatic -lib_map_path [list {modelsim=C:/Users/admin/Desktop/Parity_Test/Parity_Test.cache/compile_simlib/modelsim} {questa=C:/Users/admin/Desktop/Parity_Test/Parity_Test.cache/compile_simlib/questa} {riviera=C:/Users/admin/Desktop/Parity_Test/Parity_Test.cache/compile_simlib/riviera} {activehdl=C:/Users/admin/Desktop/Parity_Test/Parity_Test.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+export_ip_user_files -of_objects  [get_files C:/Users/admin/Desktop/Parity_Test/Parity_Test.srcs/sources_1/new/Uart8.v] -no_script -reset -force -quiet
+remove_files  C:/Users/admin/Desktop/Parity_Test/Parity_Test.srcs/sources_1/new/Uart8.v
+export_ip_user_files -of_objects  [get_files C:/Users/admin/Desktop/Parity_Test/Parity_Test.srcs/sources_1/new/BaudRateGenerator.v] -no_script -reset -force -quiet
+remove_files  C:/Users/admin/Desktop/Parity_Test/Parity_Test.srcs/sources_1/new/BaudRateGenerator.v
+export_ip_user_files -of_objects  [get_files C:/Users/admin/Desktop/Parity_Test/Parity_Test.srcs/sources_1/new/Uart8ReceiverParity.v] -no_script -reset -force -quiet
+remove_files  C:/Users/admin/Desktop/Parity_Test/Parity_Test.srcs/sources_1/new/Uart8ReceiverParity.v
+export_ip_user_files -of_objects  [get_files C:/Users/admin/Desktop/Parity_Test/Parity_Test.srcs/sources_1/new/Uart8TransmitterParity.v] -no_script -reset -force -quiet
+remove_files  C:/Users/admin/Desktop/Parity_Test/Parity_Test.srcs/sources_1/new/Uart8TransmitterParity.v
+export_ip_user_files -of_objects  [get_files C:/Users/admin/Desktop/Parity_Test/Parity_Test.srcs/sources_1/new/UartParamters.vh] -no_script -reset -force -quiet
+remove_files  C:/Users/admin/Desktop/Parity_Test/Parity_Test.srcs/sources_1/new/UartParamters.vh
+add_files -norecurse C:/Users/admin/Desktop/UartParamters.vh
+add_files -norecurse {C:/Users/admin/Desktop/Uart8ReceiverParity.v C:/Users/admin/Desktop/Uart8TransmitterParity.v C:/Users/admin/Desktop/Uart8Parity.v C:/Users/admin/Desktop/BaudRateGenerator.v}
+update_compile_order -fileset sources_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+reset_run impl_1 -prev_step 
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {C:/Users/admin/Desktop/Parity_Test/Parity_Test.runs/impl_1/Uart8.bit} [get_hw_devices xc7k325t_0]
+current_hw_device [get_hw_devices xc7k325t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7k325t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7k325t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7k325t_0]
+set_property PROGRAM.FILE {C:/Users/admin/Desktop/Parity_Test/Parity_Test.runs/impl_1/Uart8.bit} [get_hw_devices xc7k325t_0]
+program_hw_devices [get_hw_devices xc7k325t_0]
+refresh_hw_device [lindex [get_hw_devices xc7k325t_0] 0]
+close_hw_manager
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+reset_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {C:/Users/admin/Desktop/Parity_Test/Parity_Test.runs/impl_1/Uart8.bit} [get_hw_devices xc7k325t_0]
+current_hw_device [get_hw_devices xc7k325t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7k325t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7k325t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7k325t_0]
+set_property PROGRAM.FILE {C:/Users/admin/Desktop/Parity_Test/Parity_Test.runs/impl_1/Uart8.bit} [get_hw_devices xc7k325t_0]
+program_hw_devices [get_hw_devices xc7k325t_0]
+refresh_hw_device [lindex [get_hw_devices xc7k325t_0] 0]
+close_hw_manager
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {C:/Users/admin/Desktop/Parity_Test/Parity_Test.runs/impl_1/Uart8.bit} [get_hw_devices xc7k325t_0]
+current_hw_device [get_hw_devices xc7k325t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7k325t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7k325t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7k325t_0]
+set_property PROGRAM.FILE {C:/Users/admin/Desktop/Parity_Test/Parity_Test.runs/impl_1/Uart8.bit} [get_hw_devices xc7k325t_0]
+program_hw_devices [get_hw_devices xc7k325t_0]
+refresh_hw_device [lindex [get_hw_devices xc7k325t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7k325t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7k325t_0]
+set_property PROGRAM.FILE {C:/Users/admin/Desktop/Parity_Test/Parity_Test.runs/impl_1/Uart8.bit} [get_hw_devices xc7k325t_0]
+program_hw_devices [get_hw_devices xc7k325t_0]
+refresh_hw_device [lindex [get_hw_devices xc7k325t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7k325t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7k325t_0]
+set_property PROGRAM.FILE {C:/Users/admin/Desktop/Parity_Test/Parity_Test.runs/impl_1/Uart8.bit} [get_hw_devices xc7k325t_0]
+program_hw_devices [get_hw_devices xc7k325t_0]
+refresh_hw_device [lindex [get_hw_devices xc7k325t_0] 0]
+close_hw_manager
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+set_property -dict [list CONFIG.Fifo_Implementation {Common_Clock_Block_RAM} CONFIG.Reset_Pin {false} CONFIG.Reset_Type {Asynchronous_Reset} CONFIG.Use_Dout_Reset {false} CONFIG.Full_Threshold_Assert_Value {1022} CONFIG.Full_Threshold_Negate_Value {1021}] [get_ips fifo_generator_0]
+generate_target all [get_files  C:/Users/admin/Desktop/Parity_Test/Parity_Test.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci]
+catch { config_ip_cache -export [get_ips -all fifo_generator_0] }
+export_ip_user_files -of_objects [get_files C:/Users/admin/Desktop/Parity_Test/Parity_Test.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci] -no_script -sync -force -quiet
+reset_run fifo_generator_0_synth_1
+launch_runs fifo_generator_0_synth_1 -jobs 8
+wait_on_run fifo_generator_0_synth_1
+export_simulation -of_objects [get_files C:/Users/admin/Desktop/Parity_Test/Parity_Test.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci] -directory C:/Users/admin/Desktop/Parity_Test/Parity_Test.ip_user_files/sim_scripts -ip_user_files_dir C:/Users/admin/Desktop/Parity_Test/Parity_Test.ip_user_files -ipstatic_source_dir C:/Users/admin/Desktop/Parity_Test/Parity_Test.ip_user_files/ipstatic -lib_map_path [list {modelsim=C:/Users/admin/Desktop/Parity_Test/Parity_Test.cache/compile_simlib/modelsim} {questa=C:/Users/admin/Desktop/Parity_Test/Parity_Test.cache/compile_simlib/questa} {riviera=C:/Users/admin/Desktop/Parity_Test/Parity_Test.cache/compile_simlib/riviera} {activehdl=C:/Users/admin/Desktop/Parity_Test/Parity_Test.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+set_property -dict [list CONFIG.Fifo_Implementation {Independent_Clocks_Block_RAM} CONFIG.Full_Threshold_Assert_Value {1021} CONFIG.Full_Threshold_Negate_Value {1020}] [get_ips fifo_generator_0]
+generate_target all [get_files  C:/Users/admin/Desktop/Parity_Test/Parity_Test.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci]
+catch { config_ip_cache -export [get_ips -all fifo_generator_0] }
+catch { [ delete_ip_run [get_ips -all fifo_generator_0] ] }
+export_ip_user_files -of_objects [get_files C:/Users/admin/Desktop/Parity_Test/Parity_Test.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] C:/Users/admin/Desktop/Parity_Test/Parity_Test.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci]
+export_simulation -of_objects [get_files C:/Users/admin/Desktop/Parity_Test/Parity_Test.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci] -directory C:/Users/admin/Desktop/Parity_Test/Parity_Test.ip_user_files/sim_scripts -ip_user_files_dir C:/Users/admin/Desktop/Parity_Test/Parity_Test.ip_user_files -ipstatic_source_dir C:/Users/admin/Desktop/Parity_Test/Parity_Test.ip_user_files/ipstatic -lib_map_path [list {modelsim=C:/Users/admin/Desktop/Parity_Test/Parity_Test.cache/compile_simlib/modelsim} {questa=C:/Users/admin/Desktop/Parity_Test/Parity_Test.cache/compile_simlib/questa} {riviera=C:/Users/admin/Desktop/Parity_Test/Parity_Test.cache/compile_simlib/riviera} {activehdl=C:/Users/admin/Desktop/Parity_Test/Parity_Test.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {C:/Users/admin/Desktop/Parity_Test/Parity_Test.runs/impl_1/Uart8.bit} [get_hw_devices xc7k325t_0]
+current_hw_device [get_hw_devices xc7k325t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7k325t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7k325t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7k325t_0]
+set_property PROGRAM.FILE {C:/Users/admin/Desktop/Parity_Test/Parity_Test.runs/impl_1/Uart8.bit} [get_hw_devices xc7k325t_0]
+program_hw_devices [get_hw_devices xc7k325t_0]
+refresh_hw_device [lindex [get_hw_devices xc7k325t_0] 0]
+close_hw_manager
+export_ip_user_files -of_objects  [get_files C:/Users/admin/Desktop/UartParamters.vh] -no_script -reset -force -quiet
+remove_files  C:/Users/admin/Desktop/UartParamters.vh
+export_ip_user_files -of_objects  [get_files C:/Users/admin/Desktop/BaudRateGenerator.v] -no_script -reset -force -quiet
+remove_files  C:/Users/admin/Desktop/BaudRateGenerator.v
+export_ip_user_files -of_objects  [get_files C:/Users/admin/Desktop/Uart8ReceiverParity.v] -no_script -reset -force -quiet
+remove_files  C:/Users/admin/Desktop/Uart8ReceiverParity.v
+export_ip_user_files -of_objects  [get_files C:/Users/admin/Desktop/Uart8TransmitterParity.v] -no_script -reset -force -quiet
+remove_files  C:/Users/admin/Desktop/Uart8TransmitterParity.v
+export_ip_user_files -of_objects  [get_files C:/Users/admin/Desktop/Genesys2_Master.xdc] -no_script -reset -force -quiet
+remove_files  -fileset constrs_1 C:/Users/admin/Desktop/Genesys2_Master.xdc
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files C:/Users/admin/Desktop/Uart8Parity.v] -no_script -reset -force -quiet
+remove_files  C:/Users/admin/Desktop/Uart8Parity.v
+add_files -norecurse C:/Users/admin/Desktop/Uart_Verilog/UartParamters.vh
+add_files -norecurse {C:/Users/admin/Desktop/Uart_Verilog/Uart8TransmitterParity.v C:/Users/admin/Desktop/Uart_Verilog/Uart8ReceiverParity.v C:/Users/admin/Desktop/Uart_Verilog/BaudRateGenerator.v C:/Users/admin/Desktop/Uart_Verilog/Uart8Parity.v}
+update_compile_order -fileset sources_1
+add_files -fileset constrs_1 -norecurse C:/Users/admin/Desktop/Uart_Verilog/Genesys2_Master.xdc
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {C:/Users/admin/Desktop/Parity_Test/Parity_Test.runs/impl_1/Uart8.bit} [get_hw_devices xc7k325t_0]
+current_hw_device [get_hw_devices xc7k325t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7k325t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7k325t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7k325t_0]
+set_property PROGRAM.FILE {C:/Users/admin/Desktop/Parity_Test/Parity_Test.runs/impl_1/Uart8.bit} [get_hw_devices xc7k325t_0]
+program_hw_devices [get_hw_devices xc7k325t_0]
+refresh_hw_device [lindex [get_hw_devices xc7k325t_0] 0]
