@@ -64,7 +64,7 @@ module Uart8Receiver (
 `ifdef Space_Parity
                 parity  <= 1'b0;
 `endif
-`ifndef Check_Parity
+`ifdef NO_Parity
                 parity  <= 1'b0;
 `endif
                 clockCount <= 4'b0;
@@ -94,7 +94,7 @@ module Uart8Receiver (
 `ifdef Space_Parity
                     parity  <= 1'b0;
 `endif
-`ifndef Check_Parity
+`ifdef NO_Parity
                     parity  <= 1'b0;
 `endif
                 end else if (!in || |clockCount) begin
@@ -106,12 +106,12 @@ module Uart8Receiver (
             // Wait 8 full cycles to receive serial data
             `DATA_BITS: begin
                 if (&clockCount) begin // save one bit of received data
-                    if (&bitIdx) begin
+                    if (bitIdx == `MAX_DATA_INDEX) begin
                         bitIdx <= 3'b0;
-`ifdef Check_Parity
-                        state <= `PARITY_BIT;
-`else    
+`ifdef NO_Parity
                         state <= `STOP_BIT;
+`else    
+                        state <= `PARITY_BIT;
 `endif
                     end else begin
                         bitIdx <= bitIdx + 3'b1;
@@ -146,7 +146,56 @@ module Uart8Receiver (
             * transmitter. Next start bit is allowed on at least half of stop bit.
             */
             `STOP_BIT: begin
+`ifdef Parity_One
                 if ((&clockCount) || ((clockCount >= 4'd8) && (!in))) begin
+                    if (rxReady && !in) begin
+                        state <= `IDLE;
+                        clockCount <= 4'b1;
+                    end
+                    else if (rxReady) begin
+                        state <= `IDLE;
+                        clockCount <= 4'b0;
+                    end else begin
+                        state <= `RESET;
+                        clockCount <= 4'b0;
+                    end
+                    if (error) begin
+                        done <= 1'b0;
+                        out <= 'h63;  // Default Value is "?"
+                    end else begin
+                        done <= 1'b1;
+                        out <= receivedData;
+                    end
+                end else begin
+                    clockCount <= clockCount + 4'b1;
+                end
+`endif
+`ifdef Parity_One_Half
+                if ((&clockCount) || ((clockCount >= 4'd8) && (!in))) begin
+                    if (rxReady && !in) begin
+                        state <= `IDLE;
+                        clockCount <= 4'b1;
+                    end
+                    else if (rxReady) begin
+                        state <= `IDLE;
+                        clockCount <= 4'b0;
+                    end else begin
+                        state <= `RESET;
+                        clockCount <= 4'b0;
+                    end
+                    if (error) begin
+                        done <= 1'b0;
+                        out <= 'h63;  // Default Value is "?"
+                    end else begin
+                        done <= 1'b1;
+                        out <= receivedData;
+                    end
+                end else begin
+                    clockCount <= clockCount + 4'b1;
+                end
+`endif
+`ifdef Parity_Two
+                if (bitIdx == 1'b1 && (&clockCount || (clockCount >= 4'd8 && !in))) begin
                     if (rxReady && !in) begin
                         state <= `IDLE;
                         clockCount <= 4'b1;
@@ -165,11 +214,14 @@ module Uart8Receiver (
                         done <= 1'b1;
                         out <= receivedData;
                     end
+                end else if (&clockCount) begin
+                    bitIdx  <= bitIdx + 1'b1;
+                    clockCount <= clockCount + 4'b1;
                 end else begin
                     clockCount <= clockCount + 4'b1;
                 end
+`endif
             end
-
             default: state <= `RESET;
         endcase
     end

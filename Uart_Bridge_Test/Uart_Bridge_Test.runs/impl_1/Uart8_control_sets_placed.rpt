@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Fri May 26 16:55:07 2023
+| Date         : Sat May 27 20:32:41 2023
 | Host         : DESKTOP-91CQCSQ running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file Uart8_control_sets_placed.rpt
 | Design       : Uart8
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    14 |
-|    Minimum number of control sets                        |    14 |
+| Total control sets                                       |    13 |
+|    Minimum number of control sets                        |    13 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    57 |
+| Unused register locations in slices containing registers |    54 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    14 |
-| >= 0 to < 4        |     3 |
+| Total control sets |    13 |
+| >= 0 to < 4        |     2 |
 | >= 4 to < 6        |     3 |
 | >= 6 to < 8        |     1 |
 | >= 8 to < 10       |     1 |
-| >= 10 to < 12      |     1 |
+| >= 10 to < 12      |     2 |
 | >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
-| >= 16              |     5 |
+| >= 16              |     4 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,35 +58,34 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |             118 |           33 |
+| No           | No                    | No                     |             116 |           32 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              11 |            7 |
-| Yes          | No                    | No                     |              70 |           21 |
+| No           | Yes                   | No                     |              10 |            4 |
+| Yes          | No                    | No                     |              68 |           17 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              16 |            4 |
+| Yes          | Yes                   | No                     |              16 |            6 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------------------+----------------------------------------------------------------------------------------+------------------+------------------+----------------+--------------+
-|        Clock Signal        |                                      Enable Signal                                     | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
-+----------------------------+----------------------------------------------------------------------------------------+------------------+------------------+----------------+--------------+
-|  generatorInst/txClk_BUFG  | txInst/done_i_1__0_n_0                                                                 |                  |                1 |              1 |         1.00 |
-|  generatorInst/txClk_BUFG  | txInst/out_i_1_n_0                                                                     |                  |                1 |              1 |         1.00 |
-|  generatorInst/CLK_BUFG    | rxInst/done_i_1_n_0                                                                    |                  |                1 |              2 |         2.00 |
-|  generatorInst/CLK_BUFG    | rxInst/FSM_onehot_state[3]_i_1_n_0                                                     |                  |                2 |              4 |         2.00 |
-|  generatorInst/CLK_BUFG    | rxInst/clockCount                                                                      | rxInst/out0      |                1 |              4 |         4.00 |
-|  generatorInst/txClk_BUFG  | txInst/clockCount                                                                      | txInst/bitIdx0   |                1 |              4 |         4.00 |
-|  generatorInst/txClk_BUFG  | txInst/data                                                                            |                  |                2 |              7 |         3.50 |
-|  generatorInst/CLK_BUFG    | rxInst/out[7]_i_1_n_0                                                                  | rxInst/out0      |                2 |              8 |         4.00 |
-|  generatorInst/CLK_BUFG    |                                                                                        | rxInst/out0      |                7 |             11 |         1.57 |
-|  clkgen_inst/inst/clk_out1 |                                                                                        |                  |                7 |             20 |         2.86 |
-|  generatorInst/txClk_BUFG  | rx2txFifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts/E[0] |                  |                6 |             22 |         3.67 |
-|  generatorInst/CLK_BUFG    | rx2txFifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwas.wsts/E[0] |                  |                8 |             33 |         4.12 |
-|  generatorInst/CLK_BUFG    |                                                                                        |                  |               11 |             46 |         4.18 |
-|  generatorInst/txClk_BUFG  |                                                                                        |                  |               15 |             52 |         3.47 |
-+----------------------------+----------------------------------------------------------------------------------------+------------------+------------------+----------------+--------------+
++----------------------------+----------------------------------------------------------------------------------------+---------------------------------+------------------+----------------+--------------+
+|        Clock Signal        |                                      Enable Signal                                     |         Set/Reset Signal        | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------------------+----------------------------------------------------------------------------------------+---------------------------------+------------------+----------------+--------------+
+|  generatorInst/txClk_BUFG  | txInst/done_i_1__0_n_0                                                                 |                                 |                1 |              1 |         1.00 |
+|  generatorInst/txClk_BUFG  | txInst/out_i_1_n_0                                                                     |                                 |                1 |              1 |         1.00 |
+|  generatorInst/CLK_BUFG    | rxInst/done_i_1_n_0                                                                    |                                 |                2 |              4 |         2.00 |
+|  generatorInst/CLK_BUFG    | rxInst/clockCount                                                                      | rxInst/out0                     |                3 |              4 |         1.33 |
+|  generatorInst/txClk_BUFG  | txInst/clockCount                                                                      | txInst/clockCount[3]_i_1__0_n_0 |                1 |              4 |         4.00 |
+|  generatorInst/txClk_BUFG  | txInst/data                                                                            |                                 |                3 |              7 |         2.33 |
+|  generatorInst/CLK_BUFG    | rxInst/out[7]_i_1_n_0                                                                  | rxInst/out0                     |                2 |              8 |         4.00 |
+|  clkgen_inst/inst/clk_out1 |                                                                                        |                                 |                2 |             10 |         5.00 |
+|  generatorInst/CLK_BUFG    |                                                                                        | rxInst/out0                     |                4 |             10 |         2.50 |
+|  generatorInst/txClk_BUFG  | rx2txFifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts/E[0] |                                 |                4 |             22 |         5.50 |
+|  generatorInst/CLK_BUFG    | rx2txFifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwas.wsts/E[0] |                                 |                6 |             33 |         5.50 |
+|  generatorInst/CLK_BUFG    |                                                                                        |                                 |               14 |             52 |         3.71 |
+|  generatorInst/txClk_BUFG  |                                                                                        |                                 |               16 |             54 |         3.38 |
++----------------------------+----------------------------------------------------------------------------------------+---------------------------------+------------------+----------------+--------------+
 
 

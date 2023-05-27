@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Fri May 26 16:55:25 2023
+| Date         : Sat May 27 20:32:59 2023
 | Host         : DESKTOP-91CQCSQ running 64-bit major release  (build 9200)
 | Command      : report_bus_skew -warn_on_violation -file Uart8_bus_skew_routed.rpt -pb Uart8_bus_skew_routed.pb -rpx Uart8_bus_skew_routed.rpx
 | Design       : Uart8

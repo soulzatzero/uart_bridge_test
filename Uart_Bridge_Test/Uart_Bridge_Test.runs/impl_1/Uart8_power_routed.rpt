@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date             : Fri May 26 16:55:25 2023
+| Date             : Sat May 27 20:32:59 2023
 | Host             : DESKTOP-91CQCSQ running 64-bit major release  (build 9200)
 | Command          : report_power -file Uart8_power_routed.rpt -pb Uart8_power_summary_routed.pb -rpx Uart8_power_routed.rpx
 | Design           : Uart8
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.280        |
+| Total On-Chip Power (W)  | 0.277        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.120        |
+| Dynamic (W)              | 0.117        |
 | Device Static (W)        | 0.160        |
 | Effective TJA (C/W)      | 1.8          |
 | Max Ambient (C)          | 84.5         |
@@ -54,17 +54,18 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.003 |        5 |       --- |             --- |
 | Slice Logic    |    <0.001 |      471 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      159 |    203800 |            0.08 |
-|   Register     |    <0.001 |      215 |    407600 |            0.05 |
+|   LUT as Logic |    <0.001 |      170 |    203800 |            0.08 |
 |   BUFG         |    <0.001 |        2 |        32 |            6.25 |
+|   Register     |    <0.001 |      210 |    407600 |            0.05 |
+|   F7/F8 Muxes  |    <0.001 |        1 |    203800 |           <0.01 |
 |   CARRY4       |    <0.001 |        8 |     50950 |            0.02 |
 |   Others       |     0.000 |       37 |       --- |             --- |
-| Signals        |    <0.001 |      301 |       --- |             --- |
+| Signals        |    <0.001 |      307 |       --- |             --- |
 | Block RAM      |    <0.001 |      0.5 |       445 |            0.11 |
 | MMCM           |     0.107 |        1 |        10 |           10.00 |
-| I/O            |     0.009 |       14 |       500 |            2.80 |
+| I/O            |     0.007 |       22 |       500 |            4.40 |
 | Static Power   |     0.160 |          |           |                 |
-| Total          |     0.280 |          |           |                 |
+| Total          |     0.277 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -74,7 +75,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.074 |       0.006 |      0.069 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.074 |       0.005 |      0.069 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.089 |       0.061 |      0.028 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -146,7 +147,7 @@ Table of Contents
 +---------------+-----------+
 | Name          | Power (W) |
 +---------------+-----------+
-| Uart8         |     0.120 |
+| Uart8         |     0.117 |
 |   clkgen_inst |     0.113 |
 |     inst      |     0.113 |
 +---------------+-----------+

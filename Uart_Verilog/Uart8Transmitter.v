@@ -64,7 +64,7 @@ module Uart8Transmitter (
 `ifdef Space_Parity
                 parity  <= 1'b0;
 `endif
-`ifndef Check_Parity
+`ifdef NO_Parity
                 parity  <= 1'b0;
 `endif
                 if (start & en & !is_fifo_empty) begin
@@ -83,12 +83,12 @@ module Uart8Transmitter (
             `DATA_BITS  : begin // Wait 8 clock cycles for data bits to be sent
                 fifo_rd_en <= 1'b0;
                 if (&clockCount) begin
-                    if (&bitIdx) begin
+                    if (bitIdx == `MAX_DATA_INDEX) begin
                         bitIdx <= 3'b0;
-`ifdef Check_Parity
-                        state <= `PARITY_BIT;
-`else    
+`ifdef NO_Parity
                         state <= `STOP_BIT;
+`else    
+                        state <= `PARITY_BIT;
 `endif
                     end else begin
                         bitIdx <= bitIdx + 3'b1;
@@ -118,9 +118,30 @@ module Uart8Transmitter (
                 clockCount <= clockCount + 4'b1;
             end
             `STOP_BIT   : begin // Send out Stop bit (high)
+`ifdef Parity_One
                 if (&clockCount) begin
                     state   <= `IDLE;
                 end
+`endif
+`ifdef Parity_One_Half
+                if (&clockCount) begin
+                    if (bitIdx == 1'b1) begin
+                        state   <= `IDLE;
+                    end else begin
+                        bitIdx  <= bitIdx + 1'b1;
+                    end
+                end
+`endif
+`ifdef Parity_Two
+                if (&clockCount) begin
+                    if (bitIdx == 1'b1) begin
+                        state   <= `IDLE;
+                    end else begin
+                        bitIdx  <= bitIdx + 1'b1;
+                    end
+                end
+`endif
+                out     <= 1'b1;
                 done    <= 1'b1;
                 data    <= 8'b0;
                 clockCount <= clockCount + 4'b1;

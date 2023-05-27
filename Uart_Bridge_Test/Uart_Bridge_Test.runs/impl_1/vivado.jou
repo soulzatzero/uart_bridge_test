@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Fri May 26 16:54:43 2023
-# Process ID: 11988
+# Start of session at: Sat May 27 20:32:17 2023
+# Process ID: 18872
 # Current directory: C:/Users/admin/Desktop/uart_bridge_test/Uart_Bridge_Test/Uart_Bridge_Test.runs/impl_1
 # Command line: vivado.exe -log Uart8.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source Uart8.tcl -notrace
 # Log file: C:/Users/admin/Desktop/uart_bridge_test/Uart_Bridge_Test/Uart_Bridge_Test.runs/impl_1/Uart8.vdi

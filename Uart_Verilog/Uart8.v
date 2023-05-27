@@ -30,36 +30,64 @@ module Uart8  #(
     output wire RTS,
 
     // DSR/DTR
-    // input wire DSR,
-    // output wire DTR,
+    input wire DSR,
+    output wire DTR,
+
+    // DCD/RI
+    output wire DCD,
+    output wire RI,
 
     // FIFO interface
     output wire isFifoEmpty,
-    output wire isFifoFull
+    output wire isFifoFull,
+
+    // Control interface
+    input wire suspend_p,
+    input wire suspend_n,
+    output wire suspend,
+    output wire resetn
 );
 
+
+// clk wire
+wire inner_clk;
 wire rxClk;
 wire txClk;
-wire txReady;
+
+// rx/tx wire
 wire rxReady;
+wire txReady;
 
-wire inner_clk;
-
-wire fifo_full;
-wire fifo_empty;
-
+// FIFO wire
 wire fifo_rd_en;
 wire fifo_wr_en;
 wire [7:0] fifo_wr_in;
 wire [7:0] fifo_rd_out;
+wire fifo_empty;
+wire fifo_full;
 
+// RTS/CTS assignment
+// DSR/DTR assignment
+assign txReady = ~CTS & ~DSR;
+// It seems that RTS / DTR doesn't matter.
+assign RTS = 1'b1;
+assign DTR = 1'b1;
+// assign RTS = ~rxReady;
+// assign DTR = ~rxEn;
+
+// DCD/RI assignment
+assign DCD = rxDone;
+assign RI = rxDone;
+
+// FIFO assignment
+assign fifo_wr_en = rxDone;
 assign isFifoFull = fifo_full;
 assign isFifoEmpty = fifo_empty;
 
-assign fifo_wr_en = rxDone;
+// Control assignment
+assign suspend = suspend_p & ~suspend_n;
+assign resetn = rst_n;
 
-assign txReady = ~CTS;
-assign RTS = ~rxReady;
 
 clk_wiz_0 clkgen_inst (
     .clk_in1_n(clk_n),
@@ -67,10 +95,8 @@ clk_wiz_0 clkgen_inst (
     .resetn(rst_n),
     .clk_out1(inner_clk)
 );
-BaudRateGenerator #(
-    .CLOCK_RATE(CLOCK_RATE),
-    .BAUD_RATE(BAUD_RATE)
-) generatorInst (
+
+BaudRateGenerator generatorInst (
     .clk(inner_clk),
     .rst_n(rst_n),
     .rxClk(rxClk),
@@ -105,6 +131,40 @@ Uart8Transmitter txInst (
     .busy()
 );
 
+`ifdef XON_XOFF
+// XON_XOFF logic block
+reg transfer_en;
+wire fifo_wr_enable;
+
+assign fifo_wr_enable = fifo_wr_en && transfer_en && (fifo_wr_in != 8'h11) && (fifo_wr_in != 8'h13);
+
+fifo_generator_0 rx2txFifo (
+  .wr_clk(rxClk),  // input wire wr_clk
+  .rd_clk(txClk),  // input wire rd_clk
+  .din(fifo_wr_in),        // input wire [7 : 0] din
+  .wr_en(fifo_wr_enable),    // input wire wr_en
+  .rd_en(fifo_rd_en),    // input wire rd_en
+  .dout(fifo_rd_out),      // output wire [7 : 0] dout
+  .full(fifo_full),      // output wire full
+  .empty(fifo_empty)    // output wire empty
+);
+
+always @(posedge rxClk) begin
+    if (!rst_n) begin
+        transfer_en <= 1'b0;
+    end
+
+    if (fifo_wr_in == 8'h11) begin
+        transfer_en <= 1'b1;
+    end
+
+    if (fifo_wr_in == 8'h13) begin
+        transfer_en <= 1'b0;
+    end
+end
+
+`else
+
 fifo_generator_0 rx2txFifo (
   .wr_clk(rxClk),  // input wire wr_clk
   .rd_clk(txClk),  // input wire rd_clk
@@ -116,5 +176,6 @@ fifo_generator_0 rx2txFifo (
   .empty(fifo_empty)    // output wire empty
 );
 
-endmodule
+`endif
 
+endmodule

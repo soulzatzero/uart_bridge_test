@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Fri May 26 16:55:24 2023
+| Date         : Sat May 27 20:32:58 2023
 | Host         : DESKTOP-91CQCSQ running 64-bit major release  (build 9200)
 | Command      : report_methodology -file Uart8_methodology_drc_routed.rpt -pb Uart8_methodology_drc_routed.pb -rpx Uart8_methodology_drc_routed.rpx
 | Design       : Uart8
@@ -23,11 +23,11 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 198
+             Violations found: 203
 +-----------+------------------+---------------------------------------------------+------------+
 | Rule      | Severity         | Description                                       | Violations |
 +-----------+------------------+---------------------------------------------------+------------+
-| TIMING-17 | Critical Warning | Non-clocked sequential cell                       | 197        |
+| TIMING-17 | Critical Warning | Non-clocked sequential cell                       | 202        |
 | XDCC-2    | Warning          | Scoped Non-Timing constraint/property overwritten | 1          |
 +-----------+------------------+---------------------------------------------------+------------+
 
@@ -780,242 +780,267 @@ Related violations: <none>
 
 TIMING-17#150 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/FSM_onehot_state_reg[0]/C is not reached by a timing clock
+The clock pin rxInst/FSM_sequential_state_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#151 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/FSM_onehot_state_reg[1]/C is not reached by a timing clock
+The clock pin rxInst/FSM_sequential_state_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#152 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/FSM_onehot_state_reg[2]/C is not reached by a timing clock
+The clock pin rxInst/FSM_sequential_state_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#153 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/FSM_onehot_state_reg[3]/C is not reached by a timing clock
+The clock pin rxInst/bitIdx_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#154 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/bitIdx_reg[0]/C is not reached by a timing clock
+The clock pin rxInst/bitIdx_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#155 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/bitIdx_reg[1]/C is not reached by a timing clock
+The clock pin rxInst/bitIdx_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#156 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/bitIdx_reg[2]/C is not reached by a timing clock
+The clock pin rxInst/clockCount_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#157 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/clockCount_reg[0]/C is not reached by a timing clock
+The clock pin rxInst/clockCount_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#158 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/clockCount_reg[1]/C is not reached by a timing clock
+The clock pin rxInst/clockCount_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#159 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/clockCount_reg[2]/C is not reached by a timing clock
+The clock pin rxInst/clockCount_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#160 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/clockCount_reg[3]/C is not reached by a timing clock
+The clock pin rxInst/done_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#161 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/done_reg/C is not reached by a timing clock
+The clock pin rxInst/done_reg_lopt_replica/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#162 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/done_reg_lopt_replica/C is not reached by a timing clock
+The clock pin rxInst/done_reg_lopt_replica_2/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#163 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/out_reg[0]/C is not reached by a timing clock
+The clock pin rxInst/done_reg_lopt_replica_3/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#164 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/out_reg[1]/C is not reached by a timing clock
+The clock pin rxInst/error_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#165 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/out_reg[2]/C is not reached by a timing clock
+The clock pin rxInst/out_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#166 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/out_reg[3]/C is not reached by a timing clock
+The clock pin rxInst/out_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#167 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/out_reg[4]/C is not reached by a timing clock
+The clock pin rxInst/out_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#168 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/out_reg[5]/C is not reached by a timing clock
+The clock pin rxInst/out_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#169 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/out_reg[6]/C is not reached by a timing clock
+The clock pin rxInst/out_reg[4]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#170 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/out_reg[7]/C is not reached by a timing clock
+The clock pin rxInst/out_reg[5]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#171 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/receivedData_reg[0]/C is not reached by a timing clock
+The clock pin rxInst/out_reg[6]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#172 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/receivedData_reg[1]/C is not reached by a timing clock
+The clock pin rxInst/out_reg[7]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#173 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/receivedData_reg[2]/C is not reached by a timing clock
+The clock pin rxInst/parity_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#174 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/receivedData_reg[3]/C is not reached by a timing clock
+The clock pin rxInst/receivedData_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#175 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/receivedData_reg[4]/C is not reached by a timing clock
+The clock pin rxInst/receivedData_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#176 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/receivedData_reg[5]/C is not reached by a timing clock
+The clock pin rxInst/receivedData_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#177 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/receivedData_reg[6]/C is not reached by a timing clock
+The clock pin rxInst/receivedData_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#178 Critical Warning
 Non-clocked sequential cell  
-The clock pin rxInst/receivedData_reg[7]/C is not reached by a timing clock
+The clock pin rxInst/receivedData_reg[4]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#179 Critical Warning
 Non-clocked sequential cell  
-The clock pin txInst/FSM_sequential_state_reg[0]/C is not reached by a timing clock
+The clock pin rxInst/receivedData_reg[5]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#180 Critical Warning
 Non-clocked sequential cell  
-The clock pin txInst/FSM_sequential_state_reg[1]/C is not reached by a timing clock
+The clock pin rxInst/receivedData_reg[6]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#181 Critical Warning
 Non-clocked sequential cell  
-The clock pin txInst/bitIdx_reg[0]/C is not reached by a timing clock
+The clock pin rxInst/receivedData_reg[7]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#182 Critical Warning
 Non-clocked sequential cell  
-The clock pin txInst/bitIdx_reg[1]/C is not reached by a timing clock
+The clock pin txInst/FSM_sequential_state_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#183 Critical Warning
 Non-clocked sequential cell  
-The clock pin txInst/bitIdx_reg[2]/C is not reached by a timing clock
+The clock pin txInst/FSM_sequential_state_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#184 Critical Warning
 Non-clocked sequential cell  
-The clock pin txInst/clockCount_reg[0]/C is not reached by a timing clock
+The clock pin txInst/FSM_sequential_state_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#185 Critical Warning
 Non-clocked sequential cell  
-The clock pin txInst/clockCount_reg[1]/C is not reached by a timing clock
+The clock pin txInst/bitIdx_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#186 Critical Warning
 Non-clocked sequential cell  
-The clock pin txInst/clockCount_reg[2]/C is not reached by a timing clock
+The clock pin txInst/bitIdx_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#187 Critical Warning
 Non-clocked sequential cell  
-The clock pin txInst/clockCount_reg[3]/C is not reached by a timing clock
+The clock pin txInst/bitIdx_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#188 Critical Warning
 Non-clocked sequential cell  
-The clock pin txInst/data_reg[1]/C is not reached by a timing clock
+The clock pin txInst/clockCount_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#189 Critical Warning
 Non-clocked sequential cell  
-The clock pin txInst/data_reg[2]/C is not reached by a timing clock
+The clock pin txInst/clockCount_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#190 Critical Warning
 Non-clocked sequential cell  
-The clock pin txInst/data_reg[3]/C is not reached by a timing clock
+The clock pin txInst/clockCount_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#191 Critical Warning
 Non-clocked sequential cell  
-The clock pin txInst/data_reg[4]/C is not reached by a timing clock
+The clock pin txInst/clockCount_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#192 Critical Warning
 Non-clocked sequential cell  
-The clock pin txInst/data_reg[5]/C is not reached by a timing clock
+The clock pin txInst/data_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#193 Critical Warning
 Non-clocked sequential cell  
-The clock pin txInst/data_reg[6]/C is not reached by a timing clock
+The clock pin txInst/data_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#194 Critical Warning
 Non-clocked sequential cell  
-The clock pin txInst/data_reg[7]/C is not reached by a timing clock
+The clock pin txInst/data_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#195 Critical Warning
 Non-clocked sequential cell  
-The clock pin txInst/done_reg/C is not reached by a timing clock
+The clock pin txInst/data_reg[4]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#196 Critical Warning
 Non-clocked sequential cell  
-The clock pin txInst/fifo_rd_en_reg/C is not reached by a timing clock
+The clock pin txInst/data_reg[5]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#197 Critical Warning
 Non-clocked sequential cell  
+The clock pin txInst/data_reg[6]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#198 Critical Warning
+Non-clocked sequential cell  
+The clock pin txInst/data_reg[7]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#199 Critical Warning
+Non-clocked sequential cell  
+The clock pin txInst/done_reg/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#200 Critical Warning
+Non-clocked sequential cell  
+The clock pin txInst/fifo_rd_en_reg/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#201 Critical Warning
+Non-clocked sequential cell  
 The clock pin txInst/out_reg/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#202 Critical Warning
+Non-clocked sequential cell  
+The clock pin txInst/parity_reg/C is not reached by a timing clock
 Related violations: <none>
 
 XDCC-2#1 Warning
